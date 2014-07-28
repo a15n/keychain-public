@@ -60,6 +60,6 @@ function sliderHtml(number, index) {
 
 IMAGES
 ---------
-![](/screenschots/landing.png?raw=true)
-![](/screenschots/keys.png?raw=true)
-![](/screenschots/locks.png?raw=true)
+![](/screenshots/landing.png?raw=true)
+![](/screenshots/keys.png?raw=true)
+![](/screenshots/locks.png?raw=true)
