@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-content class="has-header padding" align="center">
+    <message-card message-text="LOADING EVENTS" message-icon="ion-loading-c" ng-hide="loaded"></message-card>
+
+    <message-card message-text="NO EVENTS FOUND" message-icon="ion-sad" ng-show="noEventsFound"></message-card>
+
+    <div class="item item-divider centered" ng-show="retryConnect">
+      Failed to connect to server
+      <button class="button button-full button-calm" ng-click="retryConnection()">Retry</button>
+    </div>
+
+    <div ng-show="loaded && !noEventsFound" class="list">
+      <label class="item item-input row">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="searchTerm" placeholder="Search">
+      </label>
+      <div class="item item-divider row">
+        <div class="col col-25">
+          <span ng-click="changeCurrent('name')" ng-class="{'blue-text': current === 'name'}">Name
+          </span>
+        </div>
+        <div class="col col-25">
+          <a ng-click="changeCurrent('door')" ng-class="{'blue-text': current === 'door'}">Door
+          </a>
+        </div>
+        <div class="col col-50">
+          <a ng-click="changeCurrent('date')" ng-class="{'blue-text': current === 'date'}">Date
+          </a>
+        </div>
+      </div>
+      <div ng-repeat="event in mainUser.events | filter:matchField(searchTerm) | orderBy:predicate: reverse">
+        <div class="item row">
+          <span class="col iPhone item-text-wrap text-small">{{event.user.name}}</span>
+          <span class="col iPhone item-text-wrap text-small">{{event.lock.name}}</span>
+          <span class="col iPhone item-text-wrap text-small">{{event.time | amDateFormat: 'lll' }}</span>
+          <span class="col iPhone item-text-wrap text-small" am-time-ago="event.time"></span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
